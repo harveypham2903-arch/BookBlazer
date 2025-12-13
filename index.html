@@ -6,15 +6,8 @@
     body {
       background: linear-gradient(
         to bottom,
-        red,
-        orange,
-        yellow,
-        green,
-        blue,
-        indigo,
-        violet
+        red, orange, yellow, green, blue, indigo, violet
       );
-      background-repeat: no-repeat;
       background-attachment: fixed;
       font-family: Arial, sans-serif;
       text-align: center;
@@ -22,54 +15,60 @@
       color: white;
     }
 
-    /* SEARCH BAR STYLING */
-    .search-container {
+    h1 {
+      text-shadow: 3px 3px 6px #00000060;
+      font-size: 42px;
+    }
+
+    /* Search bar */
+    .search-box {
       margin-bottom: 40px;
     }
 
-    .search-box {
-      width: 60%;
-      padding: 12px 18px;
-      font-size: 18px;
-      border-radius: 25px;
+    input[type="text"] {
+      width: 300px;
+      padding: 12px;
       border: none;
-      outline: none;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      border-radius: 8px;
+      font-size: 18px;
     }
 
-    /* HEADER */
-    h1 {
-      font-size: 50px;
-      text-shadow: 3px 3px 6px #00000080;
-      margin-bottom: 20px;
+    button {
+      padding: 12px 20px;
+      margin-left: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: white;
+      cursor: pointer;
+      font-weight: bold;
     }
 
-    /* BUTTON STYLE */
+    button:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Book buttons at bottom */
     .book-button {
       display: inline-block;
-      width: 260px;
+      width: 250px;
       padding: 15px;
       margin: 20px;
       background-color: white;
       color: #333;
       text-decoration: none;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
       border-radius: 15px;
-      border: 3px solid #fff;
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+      border: 3px solid gold;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .book-button:hover {
       transform: scale(1.08);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-      background-color: #f0f0f0;
-    }
-
-    /* BOOK SECTION AT BOTTOM */
-    .book-section {
-      margin-top: 80px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+      background-color: #f7f7f7;
     }
   </style>
 </head>
@@ -78,16 +77,40 @@
   <h1>My Books</h1>
 
   <!-- SEARCH BAR -->
-  <div class="search-container">
-    <input type="text" class="search-box" placeholder="Search for a book...">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search for a book...">
+    <button onclick="searchBook()">Search</button>
   </div>
 
-  <!-- BOOK BUTTONS AT THE BOTTOM -->
-  <div class="book-section">
-    <a href="turkey-capture.html" class="book-button">Turkey Capture</a>
-    <a href="battle-cats-rise.html" class="book-button">Battle Cats: Rise</a>
-    <a href="battle-cats-invade.html" class="book-button">Battle Cats: Invade</a>
-  </div>
+  <!-- BOOK BUTTONS -->
+  <a href="turkey-capture.html" class="book-button">Turkey Capture</a>
+  <a href="battle-cats-rise.html" class="book-button">Battle Cats: Rise</a>
+  <a href="battle-cats-invade.html" class="book-button">Battle Cats: Invade</a>
+
+  <!-- JavaScript -->
+  <script>
+    function searchBook() {
+      let text = document.getElementById("searchInput").value.toLowerCase();
+
+      if (text.includes("turkey")) {
+        window.location.href = "turkey-capture.html";
+      } else if (text.includes("rise")) {
+        window.location.href = "battle-cats-rise.html";
+      } else if (text.includes("invade")) {
+        window.location.href = "battle-cats-invade.html";
+      } else {
+        alert("No book found!");
+      }
+    }
+
+    // Press Enter to search
+    document.getElementById("searchInput")
+      .addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+          searchBook();
+        }
+      });
+  </script>
 
 </body>
 </html>
