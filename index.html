@@ -2,18 +2,27 @@
 <html>
 <head>
   <title>My Book Collection</title>
-
   <style>
     body {
-      background: linear-gradient(to bottom, lightblue, white);
+      background: linear-gradient(
+        to bottom,
+        red,
+        orange,
+        yellow,
+        green,
+        blue,
+        indigo,
+        violet
+      );
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 40px;
     }
 
     h1 {
-      color: gold;
-      text-shadow: 2px 2px 4px #00000050;
+      color: white;
+      text-shadow: 3px 3px 8px #00000080;
+      font-size: 50px;
     }
 
     /* --- BUTTON STYLE --- */
@@ -27,14 +36,13 @@
       text-decoration: none;
       font-size: 20px;
       font-weight: bold;
-
       border-radius: 15px;
       border: 3px solid gold;
 
-      /* shadow effect */
+      /* shadow */
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 
-      /* smooth animations */
+      /* animations */
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
@@ -44,32 +52,20 @@
       box-shadow: 0 12px 25px rgba(0,0,0,0.3);
       background-color: #f7f7f7;
     }
-
-    /* Caption under button */
-    .caption {
-      margin-top: 8px;
-      font-size: 16px;
-      color: #444;
-    }
-
   </style>
 </head>
-
 <body>
 
   <h1>My Books</h1>
 
   <!-- BOOK 1 BUTTON -->
   <a href="turkey-capture.html" class="book-button">Turkey Capture</a>
-  <div class="caption">Home</div>
 
   <!-- BOOK 2 BUTTON -->
   <a href="battle-cats-rise.html" class="book-button">Battle Cats: Rise</a>
-  <div class="caption">Home</div>
 
   <!-- BOOK 3 BUTTON -->
   <a href="battle-cats-invade.html" class="book-button">Battle Cats: Invade</a>
-  <div class="caption">Home</div>
 
 </body>
 </html>
