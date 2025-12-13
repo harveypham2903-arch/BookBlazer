@@ -1,96 +1,134 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Books</title>
+  <title>My Book Collection</title>
   <style>
     body {
-      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-      background-size: 400% 400%;
-      animation: rainbow 12s ease infinite;
-      font-family: Arial, sans-serif;
-      text-align: center;
+      margin: 0;
       padding: 40px;
-      color: white;
-    }
-
-    @keyframes rainbow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(
+        to bottom right,
+        red, orange, yellow, green, blue, indigo, violet
+      );
+      background-size: 100% 100%;
     }
 
     h1 {
-      text-shadow: 3px 3px 8px #00000080;
+      color: white;
+      text-shadow: 2px 2px 6px #00000080;
+      margin-bottom: 20px;
     }
 
-    /* MAIN CATEGORY BUTTONS */
-    .big-button {
-      background-color: white;
-      color: black;
-      padding: 20px 40px;
-      margin: 20px;
-      font-size: 26px;
-      border-radius: 15px;
-      border: 3px solid #444;
-      cursor: pointer;
-      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-      transition: 0.25s;
-    }
-    .big-button:hover {
-      transform: scale(1.08);
+    /* Search bar */
+    #search-bar {
+      width: 300px;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
     }
 
-    /* SUB BUTTONS */
-    .sub-buttons {
-      display: none;
-      margin-top: 20px;
+    #suggestion {
+      margin-top: 10px;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      min-height: 24px;
+      text-shadow: 2px 2px 6px #00000090;
     }
 
-    .sub-button {
+    /* Buttons */
+    .main-button, .sub-button {
       display: inline-block;
-      background-color: #fff;
+      width: 260px;
+      padding: 15px;
+      margin: 20px;
+      background: white;
       color: #333;
-      padding: 15px 25px;
-      margin: 10px;
-      font-size: 20px;
-      border-radius: 12px;
       text-decoration: none;
-      border: 2px solid #222;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      font-size: 22px;
+      font-weight: bold;
+      border-radius: 15px;
+      border: 3px solid #fff;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.25);
       transition: 0.2s;
     }
-    .sub-button:hover {
-      transform: scale(1.1);
-      background-color: #f2f2f2;
+
+    .main-button:hover, .sub-button:hover {
+      transform: scale(1.08);
+      background: #f2f2f2;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+    }
+
+    /* Hidden sections */
+    .hidden {
+      display: none;
     }
   </style>
-
-  <script>
-    function toggle(id) {
-      const box = document.getElementById(id);
-      box.style.display = (box.style.display === "block") ? "none" : "block";
-    }
-  </script>
 </head>
-
 <body>
 
   <h1>My Books</h1>
 
-  <!-- MAIN BUTTONS -->
-  <button class="big-button" onclick="toggle('holiday')">Holiday Books</button>
-  <button class="big-button" onclick="toggle('battlecats')">Battle Cats</button>
+  <!-- SEARCH BAR -->
+  <input type="text" id="search-bar" placeholder="Search books...">
+  <div id="suggestion"></div>
 
-  <!-- HOLIDAY SUB BUTTONS -->
-  <div id="holiday" class="sub-buttons">
+  <!-- MAIN CATEGORY BUTTONS -->
+  <div>
+    <button class="main-button" onclick="showHoliday()">Holiday Books</button>
+    <button class="main-button" onclick="showBattleCats()">Battle Cats</button>
+  </div>
+
+  <!-- HOLIDAY BOOKS SECTION -->
+  <div id="holiday-section" class="hidden">
     <a href="turkey-capture.html" class="sub-button">Turkey Capture</a>
   </div>
 
-  <!-- BATTLE CATS SUB BUTTONS -->
-  <div id="battlecats" class="sub-buttons">
-    <a href="battle-cats-rise.html" class="sub-button">Battle Cats Rise</a>
-    <a href="battle-cats-invade.html" class="sub-button">Battle Cats Invade</a>
+  <!-- BATTLE CATS SECTION -->
+  <div id="battlecats-section" class="hidden">
+    <a href="battle-cats-rise.html" class="sub-button">Battle Cats: Rise</a>
+    <a href="battle-cats-invade.html" class="sub-button">Battle Cats: Invade</a>
   </div>
+
+<script>
+  // Show sections
+  function showHoliday() {
+    document.getElementById("holiday-section").classList.remove("hidden");
+    document.getElementById("battlecats-section").classList.add("hidden");
+  }
+
+  function showBattleCats() {
+    document.getElementById("battlecats-section").classList.remove("hidden");
+    document.getElementById("holiday-section").classList.add("hidden");
+  }
+
+  // SEARCH ENGINE
+  const books = {
+    "turkey capture": "Turkey Capture",
+    "battle cats rise": "Battle Cats: Rise",
+    "battle cats invade": "Battle Cats: Invade"
+  };
+
+  document.getElementById("search-bar").addEventListener("input", function () {
+    const input = this.value.toLowerCase();
+    let suggestion = "";
+
+    if (input.length > 0) {
+      for (const title in books) {
+        if (title.includes(input)) {
+          suggestion = `Did you mean: <strong>${books[title]}</strong>?`;
+          break;
+        }
+      }
+    }
+
+    document.getElementById("suggestion").innerHTML = suggestion;
+  });
+</script>
 
 </body>
 </html>
