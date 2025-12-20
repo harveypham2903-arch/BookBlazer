@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>My Books</title>
+
   <style>
     body {
       background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
@@ -12,13 +14,16 @@
       padding: 40px;
       color: white;
     }
+
     @keyframes rainbow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    h1 { text-shadow: 3px 3px 8px #00000080; }
+    h1 {
+      text-shadow: 3px 3px 8px #00000080;
+    }
 
     /* SEARCH BAR */
     #searchBox {
@@ -26,12 +31,20 @@
       width: 60%;
       font-size: 20px;
       border-radius: 8px;
+      border: none;
+      cursor: text;
     }
 
     #suggestion {
-      margin-top: 12px;
+      margin-top: 15px;
       font-size: 20px;
       color: yellow;
+    }
+
+    #suggestion a {
+      color: #00ffff;
+      font-weight: bold;
+      text-decoration: underline;
     }
 
     /* MAIN CATEGORY BUTTONS */
@@ -47,6 +60,7 @@
       box-shadow: 0 8px 15px rgba(0,0,0,0.3);
       transition: 0.25s;
     }
+
     .big-button:hover {
       transform: scale(1.08);
     }
@@ -64,25 +78,25 @@
     }
 
     function searchBook(event) {
-      if (event.key !== "Enter") return;  // make Enter work only
+      if (event.key !== "Enter") return;
 
       const input = normalize(document.getElementById("searchBox").value);
       const suggestionBox = document.getElementById("suggestion");
 
-      let bestMatch = null;
+      if (input === "") {
+        suggestionBox.textContent = "Type a book name and press Enter.";
+        return;
+      }
 
       for (let title in books) {
         if (title.includes(input)) {
-          bestMatch = title;
-          break;
+          suggestionBox.innerHTML =
+            `Did you mean <a href="${books[title]}">${title}</a>?`;
+          return;
         }
       }
 
-      if (bestMatch) {
-        suggestionBox.innerHTML = `Did you mean <a href="${books[bestMatch]}">${bestMatch}</a>?`;
-      } else {
-        suggestionBox.innerHTML = "No similar book found.";
-      }
+      suggestionBox.textContent = "No similar book found.";
     }
   </script>
 </head>
@@ -91,13 +105,22 @@
   <h1>My Books</h1>
 
   <!-- SEARCH BAR -->
-  <input id="searchBox" type="text" placeholder="Search for a book..." onkeydown="searchBook(event)">
+  <input
+    id="searchBox"
+    type="text"
+    placeholder="Search for a book..."
+    onkeydown="searchBook(event)"
+  >
   <div id="suggestion"></div>
 
   <!-- MAIN BUTTONS -->
   <div>
-    <button class="big-button" onclick="location.href='holiday.html'">Holiday Books</button>
-    <button class="big-button" onclick="location.href='battlecats.html'">Battle Cats</button>
+    <button class="big-button" onclick="location.href='holiday.html'">
+      Holiday Books
+    </button>
+    <button class="big-button" onclick="location.href='battlecats.html'">
+      Battle Cats
+    </button>
   </div>
 </body>
 </html>
