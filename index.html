@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>My Books</title>
-
   <style>
     body {
       background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
@@ -14,40 +13,31 @@
       padding: 40px;
       color: white;
     }
-
     @keyframes rainbow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     h1 {
       text-shadow: 3px 3px 8px #00000080;
     }
-
-    /* SEARCH BAR */
     #searchBox {
       padding: 12px;
       width: 60%;
       font-size: 20px;
       border-radius: 8px;
       border: none;
-      cursor: text;
     }
-
     #suggestion {
       margin-top: 15px;
       font-size: 20px;
       color: yellow;
     }
-
     #suggestion a {
       color: #00ffff;
       font-weight: bold;
       text-decoration: underline;
     }
-
-    /* MAIN CATEGORY BUTTONS */
     .big-button {
       background-color: white;
       color: black;
@@ -60,7 +50,6 @@
       box-shadow: 0 8px 15px rgba(0,0,0,0.3);
       transition: 0.25s;
     }
-
     .big-button:hover {
       transform: scale(1.08);
     }
@@ -68,7 +57,7 @@
 
   <script>
     const books = {
-      "turkey capture": "turkey-page1.hmtl",
+      "turkey capture": "turkey-cover.html",
       "battle cats rise": "battle-cats-rise.html",
       "battle cats invade": "battle-cats-invade.html"
     };
@@ -104,7 +93,6 @@
 <body>
   <h1>My Books</h1>
 
-  <!-- SEARCH BAR -->
   <input
     id="searchBox"
     type="text"
@@ -113,7 +101,6 @@
   >
   <div id="suggestion"></div>
 
-  <!-- MAIN BUTTONS -->
   <div>
     <button class="big-button" onclick="location.href='holiday.html'">
       Holiday Books
