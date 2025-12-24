@@ -8,59 +8,54 @@
       padding: 40px;
       line-height: 1.6;
       font-size: 20px;
+      margin: 0;
     }
 
-    h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
+    /* CLICK AREAS */
+    .left-zone, .right-zone {
+      position: fixed;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      cursor: pointer;
     }
 
-    .next-button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 12px 25px;
-      font-size: 20px;
-      background-color: black;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
+    .left-zone {
+      left: 0;
     }
 
-    .next-button:hover {
-      background-color: #333;
+    .right-zone {
+      right: 0;
     }
 
-    /* HOME BUTTON (same on every page) */
-    .home-button {
-      display: inline-block;
-      margin-top: 20px;
-      margin-left: 20px;
-      padding: 10px 20px;
+    /* PAGE NUMBER */
+    .page-number {
+      position: fixed;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
       font-size: 18px;
-      background-color: white;
-      color: black;
-      text-decoration: none;
-      border-radius: 8px;
-      border: 2px solid black;
-    }
-
-    .home-button:hover {
-      background-color: #eee;
+      color: gray;
     }
   </style>
 </head>
 <body>
 
   <h1>Max and His Family’s Perspective</h1>
-
   <p>
     Thanksgiving is coming up, but there is one problem: Max and his family don’t have a turkey.
     They also don’t want to buy one.
     For some reason, super random turkeys come out at night.
   </p>
 
-  <a class="next-button" href="turkey-page2.html">Next →</a>
-  <a class="home-button" href="index.html">🏠 Home</a>
+  <!-- LEFT = PREVIOUS -->
+  <div class="left-zone" onclick="location.href='turkey-cover.html'"></div>
+
+  <!-- RIGHT = NEXT -->
+  <div class="right-zone" onclick="location.href='turkey-page2.html'"></div>
+
+  <!-- PAGE NUMBER -->
+  <div class="page-number">Page 1</div>
 
 </body>
 </html>
